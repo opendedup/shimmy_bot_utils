@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'node_checker = shimmy_bot_utils.node_checker:main'
+            'node_checker = shimmy_bot_utils.node_checker:main',
+            'startup_controller = shimmy_bot_utils.startup_controller:main'
         ],
     },
 )
