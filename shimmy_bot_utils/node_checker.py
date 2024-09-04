@@ -5,11 +5,11 @@ from std_msgs.msg import String
 import json
 
 class NodeChecker(Node):
-    def __init__(self):
+    def __init__(self,namespace="/shimmy_bot"):
         super().__init__('node_checker')
         self.declare_parameter('target_nodes', ['node_checker'])
         self.target_nodes = self.get_parameter('target_nodes').value
-        self.publisher_ = self.create_publisher(String, '/shimmy_bot/node_status', 10)
+        self.publisher_ = self.create_publisher(String, f'{namespace}/node_status', 10)
         self.timer = self.create_timer(1.0, self.check_nodes)  # Check every 1 second
 
     def check_nodes(self):

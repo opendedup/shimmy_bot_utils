@@ -7,15 +7,15 @@ import time
 import math
 
 class StartupLEDController(Node):
-    def __init__(self):
+    def __init__(self,namespace="/shimmy_bot"):
         super().__init__('startup_led_controller')
         self.declare_parameter('target_nodes', ['m_service','voice_emb','image_cap_service','asr_listener'])
         self.target_nodes = self.get_parameter('target_nodes').value
-        self.led_publisher_ = self.create_publisher(PaintLedColor, 'ledpaint', 10)
-        self.chat_publisher_ = self.create_publisher(Chat, 'asr', 10)
+        self.led_publisher_ = self.create_publisher(PaintLedColor, f'{namespace}/ledpaint', 10)
+        self.chat_publisher_ = self.create_publisher(Chat, f'{namespace}/asr', 10)
         self.node_status_subscription = self.create_subscription(
             String, 
-            '/shimmy_bot/node_status', 
+            f'{namespace}/node_status', 
             self.node_status_callback, 
             10)
         self.m_service_started = False
