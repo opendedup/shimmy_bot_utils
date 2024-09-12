@@ -67,7 +67,7 @@ class StartupLEDController(Node):
                 self.get_logger().info("All nodes started. Turning off LEDs.")
                 self.destroy_timer(self.timer)
                 cmsg = Chat()
-                cmsg.chat_text = "Hey Shimmy, Say Hello and Tell me a little bit about yourself."
+                cmsg.chat_text = "Hey Shimmy, Say Hello and Tell me a little bit about yourself. Be brief"
                 cmsg.sid_embedding = [0.0]
                 cmsg.direction = 0
                 self.chat_publisher_.publish(cmsg)
